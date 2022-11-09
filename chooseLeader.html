@@ -8,17 +8,20 @@
 </head>
 <body>
     <h3>투표해주세요</h3>
-    <button>서연</button>
-    <button>상희</button>
-    <button>인준</button>
-    <button>세민</button>
-    <button>아무나되라</button>
+    <div class="candidate">
+        <button>서연</button>
+        <button>상희</button>
+        <button>인준</button>
+        <button>세민</button>
+        <button>아무나되라</button>
+    </div>
     <div id="clickBtn"></div>
+    <button>투표종료</button>
 </body>
 </html>
 
 <script>
-    const vote = document.querySelectorAll('button');
+    const vote = document.querySelectorAll('.candidate button');
     const btnArr = [...vote];
     const voteArr = new Array();
     const candidate = {
@@ -26,6 +29,10 @@
             vote : 0
         };
     let voteCnt = 0;
+
+    for(let i = 0; i < btnArr.length; i++) {
+        btnArr[i].addEventListener('click', buttonClick);
+    }
 
     function buttonClick(evt) {
         const thisBtn = evt.target.innerHTML;
@@ -39,17 +46,14 @@
             voteCnt = result[x];
             return voteCnt;
         });
+        candidate.name = thisBtn;
         candidate.vote = voteCnt;
 
         console.log(candidate)
-
     }
 
 
-    for(let i = 0; i < btnArr.length; i++) {
-        btnArr[i].addEventListener('click', buttonClick);
-        candidate.name = btnArr[i].innerText;
-    }
+
 
 
 
