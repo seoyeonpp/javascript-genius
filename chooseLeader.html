@@ -21,34 +21,34 @@
     const vote = document.querySelectorAll('button');
     const btnArr = [...vote];
     const voteArr = new Array();
-
-
+    const candidate = {
+            name : '',
+            vote : 0
+        };
+    let voteCnt = 0;
 
     function buttonClick(evt) {
         const thisBtn = evt.target.innerHTML;
+        let result = [];
+
         document.getElementById('clickBtn').append(thisBtn);
         voteArr.push(thisBtn);
-        // console.log(voteArr)
-        // let voteStr = voteArr.split('');
-        // console.log(voteStr)
-        // const result = voteArr.groupBy((value, index, source) => {
-        //     console.log(value,index,source)
-        // });
-        // console.log(result)
 
-        // 배열 안의 값 비교
-        const result = {};
-        voteArr.forEach((x) => {
+        voteArr.map((x) => {
             result[x] = (result[x] || 0) + 1;
+            voteCnt = result[x];
+            return voteCnt;
         });
+        candidate.vote = voteCnt;
 
-        console.log(result);
+        console.log(candidate)
 
     }
 
 
     for(let i = 0; i < btnArr.length; i++) {
         btnArr[i].addEventListener('click', buttonClick);
+        candidate.name = btnArr[i].innerText;
     }
 
 
