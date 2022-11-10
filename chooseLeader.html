@@ -5,18 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>반장선거하기</title>
+    <style>
+        #wrap {
+            display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 1.5rem;
+        }
+        h1 {font-size: 2rem;}
+        .candidate {
+            display: flex; gap: 1rem;
+        }
+        .candidate button {
+            background-color: powderblue; border-radius: 2rem; border: none; outline: none; appearance: none; padding: 1rem 2rem;
+            font-size: 1rem; line-height: 1; color: #333;
+        }
+        .candidate button:focus,.candidate button:active {
+            background-color: #8bc7cf;
+        }
+        .doneVote{
+            border-radius: 0.5rem; border: none; outline: none; appearance: none; padding: 1rem 4rem; background-color: blanchedalmond;
+        }
+    </style>
 </head>
 <body>
-    <h3>투표해주세요</h3>
-    <div class="candidate">
-        <button>서연</button>
-        <button>상희</button>
-        <button>인준</button>
-        <button>세민</button>
-        <button>아무나되라</button>
+    <div id="wrap">
+        <h1>투표해주세요</h1>
+        <div class="candidate">
+            <button>서연</button>
+            <button>상희</button>
+            <button>인준</button>
+            <button>세민</button>
+            <button>아무나되라</button>
+        </div>
+        <button class="doneVote">투표종료</button>
+        <div id="clickBtn"></div>
     </div>
-    <div id="clickBtn"></div>
-    <button>투표종료</button>
 </body>
 </html>
 
@@ -24,6 +45,7 @@
     const vote = document.querySelectorAll('.candidate button');
     const btnArr = [...vote];
     const voteArr = new Array();
+    const doneBtn = document.querySelector('.doneVote');
     const candidate = {
             name : '',
             vote : 0
@@ -33,12 +55,13 @@
     for(let i = 0; i < btnArr.length; i++) {
         btnArr[i].addEventListener('click', buttonClick);
     }
+    doneBtn.addEventListener('click',doneVote);
 
     function buttonClick(evt) {
         const thisBtn = evt.target.innerHTML;
         let result = [];
 
-        document.getElementById('clickBtn').append(thisBtn);
+        // document.getElementById('clickBtn').append(thisBtn);
         voteArr.push(thisBtn);
 
         voteArr.map((x) => {
@@ -49,9 +72,12 @@
         candidate.name = thisBtn;
         candidate.vote = voteCnt;
 
-        console.log(candidate)
+        // console.log(candidate)
     }
 
+    function doneVote () {
+        console.log(candidate)
+    }
 
 
 
