@@ -51,15 +51,16 @@
             vote : 0
         };
     let voteCnt = 0;
+    const test = []
 
     for(let i = 0; i < btnArr.length; i++) {
         btnArr[i].addEventListener('click', buttonClick);
     }
     doneBtn.addEventListener('click',doneVote);
 
+    let result = [];
     function buttonClick(evt) {
         const thisBtn = evt.target.innerHTML;
-        let result = [];
 
         // document.getElementById('clickBtn').append(thisBtn);
         voteArr.push(thisBtn);
@@ -71,18 +72,18 @@
         });
         candidate.name = thisBtn;
         candidate.vote = voteCnt;
-
-        // console.log(candidate)
-    }
-
-    function doneVote () {
+        result = {...result, ...candidate}
         console.log(candidate)
     }
 
+    function doneVote () {
+        console.log(result)
+    }
 
 
 
 
 
 
+0
 </script>
