@@ -42,48 +42,44 @@
 </html>
 
 <script>
-    const vote = document.querySelectorAll('.candidate button');
-    const btnArr = [...vote];
-    const voteArr = new Array();
-    const doneBtn = document.querySelector('.doneVote');
-    const candidate = {
-            name : '',
-            vote : 0
-        };
-    let voteCnt = 0;
-    const test = []
+    (function(){
+        const vote = document.querySelectorAll('.candidate button');
+        const btnArr = [...vote];
+        const voteArr = new Array();
+        const doneBtn = document.querySelector('.doneVote');
+        const candidate = {
+                name : '',
+                vote : 0
+            };
+        let voteCnt = 0;
+        const test = []
 
-    for(let i = 0; i < btnArr.length; i++) {
-        btnArr[i].addEventListener('click', buttonClick);
-    }
-    doneBtn.addEventListener('click',doneVote);
+        for(let i = 0; i < btnArr.length; i++) {
+            btnArr[i].addEventListener('click', buttonClick);
+        }
+        doneBtn.addEventListener('click',doneVote);
 
-    let result = [];
-    function buttonClick(evt) {
-        const thisBtn = evt.target.innerHTML;
+        let result = [];
+        function buttonClick(evt) {
+            const thisBtn = evt.target.innerHTML;
 
-        // document.getElementById('clickBtn').append(thisBtn);
-        voteArr.push(thisBtn);
+            // document.getElementById('clickBtn').append(thisBtn);
+            voteArr.push(thisBtn);
 
-        voteArr.map((x) => {
-            result[x] = (result[x] || 0) + 1;
-            voteCnt = result[x];
-            return voteCnt;
-        });
-        candidate.name = thisBtn;
-        candidate.vote = voteCnt;
-        result = {...result, ...candidate}
-        console.log(candidate)
-    }
+            voteArr.map((x) => {
+                result[x] = (result[x] || 0) + 1;
+                voteCnt = result[x];
+                return voteCnt;
+            });
+            candidate.name = thisBtn;
+            candidate.vote = voteCnt;
+            result = {...result, ...candidate}
+            console.log(candidate)
+        }
 
-    function doneVote () {
-        console.log(result)
-    }
+        function doneVote () {
+            console.log(result)
+        }
+    })();
 
-
-
-
-
-
-0
 </script>
